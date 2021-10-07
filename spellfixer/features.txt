@@ -1,0 +1,38 @@
+Features for spellfixer:
+
+We have implemented a pipeline of three spell fixes for every input:
+Output will be returned after passing  through all the three fixes.
+
+1) Checks for an accidental neighbor key hit:
+   EXAMPLE: P3ople : here the 'e' was accidentally hit as '3' since it is a neighboring key
+   FIX: 1) Maintain a case-insensitive dict(words.txt) of all keys, and it's neighbor keys.
+           Adjacent keyboard characters dict
+           Example: {'a': ['q', 'w', 's', 'z'], .......}
+        2) Maintain a valid english word set, loaded from a text file(words.txt) a set is filled with all
+           valid english words.
+           Example: {'apple', 'ball', ....}
+        3) For every character in the word, form a new words by replacing it with it's neighboring keys.
+           If the new word is a valid word from words set, then return it. Else return the original word.
+   TESTCASES: F9x 5he spelling!
+              The qu9ck b4own foxx jumped ober ths laxy sog!!
+
+2) Checks for multiple characters hit by accident:
+   EXAMPLE: Ppppeople : here the 'p' was accidently hit multiple times.
+   FIX: 1) Check if this word is a valid word in the words set, if it's not proceed to fix else return word
+        2) Generate new word combinations whenever you see same character appearing multiple times during iteration
+           For example: when we spot 'p' repeating more than once, these are the new words we generate:
+                        Pppeople, Ppeople, People
+        3) If any such word is a valid word from wordSet return the word else keep trying for other characters, if not
+           found any return original word
+   TESTCASES: FixXX tTTthe spellLing!
+              The qu9ck brrrown foxx jumped ovver ths lazzy sog!!
+
+3) Checks for an accidental non-neighboring key hit:
+   EXAMPLE: Pexple: 'x' was accidentally hit instead 'o' which is a non neighbor to 'x'.
+   FIX: 1) Check if this word is a valid word in the words set, if it's not proceed to fix else return word.
+        2) For every character in the word, form a new words by replacing it with every alphabet in english letters.
+           If the new word is a valid word from word set, then return it. Else return the original word.
+        For Pexple: the execution goes something like this:  Aexple, Bexple, ...... Zexple, Paxple, Pbxple, ....
+            Peaple, Pebple, Pecple,.......People -> (valid word found)
+   TESTCASES: cix thz spelling!
+              The quicz zrown foz jumped ovver ths lazzy sog!!
