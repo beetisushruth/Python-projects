@@ -1,0 +1,20 @@
+(readings without the rehashing function)
+
+Answer 1:
+
+File names                 mb.txt                   atotc.txt
+Hash table size
+100                        33.05                    108.93
+
+1000                       3.5339547270306255       10.286447638603697
+
+Answer 2:
+
+File names                 mb.txt                   atotc.txt
+Hash table size
+100                        33.05                    108.93
+
+1000                       2.5175619834710745       9.993
+
+
+Over a period of time, for bigger hash table, better hash function gives better balance and thus leads to amortised constant time.
